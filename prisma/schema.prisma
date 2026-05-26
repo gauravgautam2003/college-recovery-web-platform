@@ -1,7 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// EduVision AI - College Discovery Platform Database Schema
+// This is your Prisma schema file for PostgreSQL
+// Learn more at: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client"
@@ -10,4 +9,113 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// User model: Stores student/user information
+model User {
+  id                String         @id @default(cuid())
+  name              String
+  email             String         @unique
+  passwordHash      String
+  targetCourse      String?
+  preferredLocation String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  savedColleges     SavedCollege[]
+  applications      Application[]
+}
+
+// CollegeOwner model: College owners who can create and manage colleges
+model CollegeOwner {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  colleges College[]
+}
+
+// CollegeAdmin model: Allows colleges to manage their own profiles
+model CollegeAdmin {
+  id              String   @id @default(cuid())
+  collegeId       String   @unique
+  email           String   @unique
+  passwordHash    String
+  name            String
+  phone           String?
+  isVerified      Boolean  @default(false)
+  verificationToken String?
+  lastLogin       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  college         College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+// College model: Stores comprehensive college information
+model College {
+  id                  String         @id @default(cuid())
+  name                String
+  shortName           String?
+  location            String
+  type                String
+  description         String         // Long description of the college
+  rank                Int?            // National/International ranking
+  rating              Float?          // Overall rating (0-5)
+  fees                String          // Formatted fee amount (e.g., "Rs. 8.2 Lakhs")
+  feesValue           Int             // Fee amount in numeric form for filtering
+  averagePackage      String          // Formatted package (e.g., "Rs. 24.5 LPA")
+  averagePackageValue Int             // Package amount in numeric form for sorting
+  courses             String[]        // Array of offered courses
+  image               String?         // College image/logo URL
+  acceptanceRate      String?         // Acceptance rate percentage
+  placementRate       String?         // Placement rate percentage
+  topRecruiters       String[]        // Array of top recruiting companies
+  facilities          String[]        // Array of campus facilities
+  admissionDeadline   String?         // Admission deadline date
+  contactEmail        String?         // Contact email for admissions
+  phone               String?         // Contact phone number
+  website             String?         // College website URL
+  establishedAt       Int?            // Year college was established
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  
+  // College owner relationship
+  ownerId             String?
+  owner               CollegeOwner?   @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  
+  savedBy             SavedCollege[]
+  admin               CollegeAdmin?
+  applications        Application[]
+}
+
+// SavedCollege model: Junction table for user-college relationships
+model SavedCollege {
+  id        String   @id @default(cuid())
+  userId    String
+  collegeId String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, collegeId]) // Prevent duplicate saves
+}
+
+// Application model: Student admission inquiries submitted from college pages
+model Application {
+  id          String   @id @default(cuid())
+  collegeId   String
+  userId      String?
+  studentName String
+  email       String
+  phone       String
+  course      String
+  message     String?
+  status      String   @default("submitted")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  college     College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }

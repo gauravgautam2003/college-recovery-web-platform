@@ -41,7 +41,7 @@ export const collegeCards = [
     package: "₹21.2 LPA",
     fees: "₹19.5 Lakhs",
     image:
-      "https://images.unsplash.com/photo-1581093458791-9d15482442f6?auto=format&fit=crop&w=900&q=80",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/BITS_Pilani.jpg/1280px-BITS_Pilani.jpg",
   },
 ];
 
