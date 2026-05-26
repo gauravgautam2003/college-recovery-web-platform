@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { CheckCircle, Loader2, Send } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import BackButton from "@/components/shared/BackButton";
 import type { College } from "@/types/college";
 
 export default function ApplyPage() {
@@ -97,6 +98,7 @@ function ApplyForm() {
             <main className="min-h-screen bg-[#f8f9ff] px-6 py-12">
                 <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_380px]">
                     <section>
+                        <BackButton fallbackHref={collegeId ? `/colleges/${collegeId}` : "/colleges"} className="mb-6" />
                         <h1 className="text-4xl font-bold text-slate-950">Apply to College</h1>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
                             Submit your interest directly to the admissions team. This application record is saved in the backend and visible to the college owner panel.

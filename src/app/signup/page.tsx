@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { CheckCircle2, GraduationCap, Lock, Mail, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import BackButton from "@/components/shared/BackButton";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -63,6 +64,7 @@ export default function SignupPage() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="w-full max-w-[440px]"
         >
+          <BackButton fallbackHref="/" className="mb-4" />
           <div className="modern-surface rounded-xl px-6 py-6">
             <div className="text-center">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#e2dfff] text-[#3525cd]">

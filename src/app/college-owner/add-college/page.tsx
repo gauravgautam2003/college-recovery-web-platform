@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CollegeEditForm from "@/components/college/CollegeEditForm";
+import BackButton from "@/components/shared/BackButton";
 import type { College } from "@/types/college";
 
 export default function AddCollegePage() {
@@ -34,6 +35,7 @@ export default function AddCollegePage() {
             <Navbar />
             <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                    <BackButton fallbackHref="/college-owner/dashboard" className="mb-6" />
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}

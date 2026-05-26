@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { Loader2, Mail, MapPin, Save, Target, User } from "lucide-react";
 import DashboardShell from "@/components/dashboard/DashboardShell";
+import BackButton from "@/components/shared/BackButton";
 import type { PublicUser } from "@/types/user";
 
 export default function ProfilePage() {
@@ -72,6 +73,7 @@ export default function ProfilePage() {
   return (
     <DashboardShell>
       <section className="px-8 py-10">
+        <BackButton fallbackHref="/saved" className="mb-6" />
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
           <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#0b1c30] xl:text-5xl">Profile</h1>
           <p className="mt-2 text-sm text-slate-600">Update your student details and preferences.</p>

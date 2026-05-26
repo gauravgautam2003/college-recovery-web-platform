@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Loader2, Mail, Lock, User } from "lucide-react";
+import BackButton from "@/components/shared/BackButton";
 
 export default function CollegeOwnerAuthPage() {
     const [mode, setMode] = useState<"login" | "signup">("login");
@@ -67,7 +68,9 @@ export default function CollegeOwnerAuthPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+            <div className="w-full max-w-md">
+                <BackButton fallbackHref="/" className="mb-4" />
+            <div className="bg-white rounded-2xl shadow-2xl p-8">
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">College Owner</h1>
@@ -175,6 +178,7 @@ export default function CollegeOwnerAuthPage() {
                         Login here
                     </a>
                 </p>
+            </div>
             </div>
         </div>
     );

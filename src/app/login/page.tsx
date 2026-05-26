@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Eye, Lock, Mail, Star, TrendingUp } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import BackButton from "@/components/shared/BackButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -68,6 +69,7 @@ export default function LoginPage() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="w-full max-w-[440px]"
         >
+          <BackButton fallbackHref="/" className="mb-4" />
           <div className="modern-surface rounded-xl px-6 py-6">
             <div className="text-center">
               <h1 className="text-xl font-bold leading-tight">Welcome Back</h1>
