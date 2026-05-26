@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, GraduationCap, LayoutDashboard, Search } from "lucide-react";
+import { Building2, GraduationCap, LayoutDashboard, Search, Menu } from "lucide-react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
@@ -14,50 +15,93 @@ const links = [
 ];
 
 export default function Navbar({ dashboard = false }: { dashboard?: boolean }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/85 px-5 backdrop-blur-xl"
-    >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between">
-        <Link href="/" className="text-lg font-bold text-[#3525cd]">
-          EduVision AI
-        </Link>
-        <div className="hidden items-center gap-2 text-sm font-semibold text-slate-700 md:flex">
+    <>
+      {/* Sidebar Drawer for Mobile */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        onClick={() => setSidebarOpen(false)}
+      />
+      <aside
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white shadow-lg transform transition-transform duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        style={{ willChange: "transform" }}
+      >
+        <div className="flex items-center justify-between px-6 py-4 border-b">
+          <Link href="/" className="text-lg font-bold text-[#3525cd]" onClick={() => setSidebarOpen(false)}>
+            EduVision AI
+          </Link>
+          <button onClick={() => setSidebarOpen(false)} aria-label="Close sidebar" className="p-2">
+            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </button>
+        </div>
+        <nav className="flex flex-col gap-2 p-6">
           {links.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`flex items-center gap-2 rounded-full px-3.5 py-2 transition hover:bg-[#eff4ff] hover:text-[#3525cd] ${
-                link.label === "Dashboard" || link.label === "For Colleges" ? "border border-indigo-100 bg-[#f5f3ff] text-[#3525cd]" : ""
-              }`}
+              className="flex items-center gap-3 rounded px-3.5 py-2 text-base font-medium text-slate-700 hover:bg-[#eff4ff] hover:text-[#3525cd]"
+              onClick={() => setSidebarOpen(false)}
             >
-              {link.icon ? <link.icon className="h-4 w-4" /> : null}
+              {link.icon ? <link.icon className="h-5 w-5" /> : null}
               {link.label}
             </Link>
           ))}
+        </nav>
+      </aside>
+
+      <motion.nav
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/85 px-5 backdrop-blur-xl"
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between">
+          <Link href="/" className="text-lg font-bold text-[#3525cd]">
+            EduVision AI
+          </Link>
+          {/* Desktop Nav */}
+          <div className="hidden items-center gap-2 text-sm font-semibold text-slate-700 md:flex">
+            {links.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`flex items-center gap-2 rounded-full px-3.5 py-2 transition hover:bg-[#eff4ff] hover:text-[#3525cd] ${link.label === "Dashboard" || link.label === "For Colleges" ? "border border-indigo-100 bg-[#f5f3ff] text-[#3525cd]" : ""
+                  }`}
+              >
+                {link.icon ? <link.icon className="h-4 w-4" /> : null}
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          {/* Mobile Hamburger Icon */}
+          <button
+            className="flex items-center justify-center md:hidden p-2 rounded hover:bg-[#eff4ff]"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu className="h-6 w-6 text-[#3525cd]" />
+          </button>
+          {/* Auth Buttons */}
+          {dashboard ? (
+            <div className="flex items-center gap-4">
+              <Search className="h-5 w-5" />
+              <div className="h-9 w-9 rounded-full bg-[url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80')] bg-cover ring-2 ring-indigo-100" />
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center gap-3">
+              <Link href="/login" className="text-sm font-semibold text-slate-700">
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="rounded-full bg-[#4f46e5] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
-        {dashboard ? (
-          <div className="flex items-center gap-4">
-            <Search className="h-5 w-5" />
-            <div className="h-9 w-9 rounded-full bg-[url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80')] bg-cover ring-2 ring-indigo-100" />
-          </div>
-        ) : (
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm font-semibold text-slate-700">
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-full bg-[#4f46e5] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5"
-            >
-              Sign Up
-            </Link>
-          </div>
-        )}
-      </div>
-    </motion.nav>
-  );
+      </motion.nav>
+    </>
 }
