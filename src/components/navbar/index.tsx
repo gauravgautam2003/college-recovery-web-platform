@@ -104,4 +104,5 @@ export default function Navbar({ dashboard = false }: { dashboard?: boolean }) {
         </div>
       </motion.nav>
     </>
+  );
 }
