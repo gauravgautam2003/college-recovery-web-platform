@@ -8,7 +8,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { FileText, Loader2, Plus, Edit2, Trash2, Eye, LogOut } from "lucide-react";
+import { Activity, FileText, Loader2, Plus, Edit2, Trash2, Eye, LogOut } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -75,6 +75,10 @@ export default function CollegeOwnerDashboard() {
         router.push("/college-owner/applications");
     };
 
+    const handleSystemStatus = () => {
+        router.push("/college-owner/system");
+    };
+
     const handleEditCollege = (collegeId: string) => {
         router.push(`/college-owner/edit-college/${collegeId}`);
     };
@@ -130,6 +134,13 @@ export default function CollegeOwnerDashboard() {
                             <p className="text-slate-600">Welcome, {ownerName}</p>
                         </div>
                         <div className="flex gap-4">
+                            <button
+                                onClick={handleSystemStatus}
+                                className="bg-white text-slate-800 border border-slate-300 px-6 py-2 rounded-lg font-semibold hover:bg-slate-50 transition-colors flex items-center gap-2"
+                            >
+                                <Activity className="h-5 w-5" />
+                                System
+                            </button>
                             <button
                                 onClick={handleApplications}
                                 className="bg-slate-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-slate-800 transition-colors flex items-center gap-2"

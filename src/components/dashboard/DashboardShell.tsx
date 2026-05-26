@@ -3,13 +3,14 @@
 import type React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bookmark, Clock, Settings, User } from "lucide-react";
+import { Bookmark, Clock, FileText, Settings, User } from "lucide-react";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { cn } from "@/components/ui";
 
 const dashboardLinks = [
   { href: "/saved", label: "Saved", icon: Bookmark },
+  { href: "/applications", label: "Applications", icon: FileText },
   { href: "/history", label: "History", icon: Clock },
   { href: "/profile", label: "Profile", icon: User },
   { href: "/settings", label: "Settings", icon: Settings },

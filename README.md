@@ -18,12 +18,14 @@ Working and visible in the UI:
 - Compare page
 - Student "How to Apply" page
 - Application inquiry form
+- Student application tracking dashboard
 - College owner login/signup
 - College owner dashboard
 - Add college page
 - Edit college page
 - Cloudinary image upload signing endpoint
 - College owner applications panel
+- Safe system status page for `.env` configuration checks
 - API routes for all major flows
 
 Important production note:
@@ -135,6 +137,7 @@ npm run build
 | Route | Purpose |
 |---|---|
 | `/saved` | Saved colleges |
+| `/applications` | Track submitted admission applications |
 | `/profile` | Update student name, target course, and preferred location |
 | `/history` | Student history page |
 | `/settings` | Student settings page |
@@ -148,6 +151,7 @@ npm run build
 | `/college-owner/add-college` | Add a full college profile |
 | `/college-owner/edit-college/[id]` | Edit owned college listing |
 | `/college-owner/applications` | Review student applications for owned colleges |
+| `/college-owner/system` | Safe `.env` and service configuration status |
 
 ## Student Flow
 
@@ -269,6 +273,7 @@ Authorization: Bearer <college_owner_token>
 | `PATCH` | `/api/college-owner/colleges/[id]` | Update owned college |
 | `DELETE` | `/api/college-owner/colleges/[id]` | Delete owned college |
 | `GET` | `/api/college-owner/applications` | List applications for owned colleges |
+| `GET` | `/api/system/status` | Safe environment/service status without exposing secrets |
 
 Owner auth payload:
 

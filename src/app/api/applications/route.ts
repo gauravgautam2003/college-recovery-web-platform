@@ -4,6 +4,23 @@ import { requireAuth } from "@/lib/auth";
 import { store, type StoredApplication } from "@/lib/store";
 import { applicationCreateSchema } from "@/lib/validators";
 
+export async function GET() {
+    const session = await requireAuth();
+    if (!session) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const applications = store.applications
+        .filter((application) => application.userId === session.userId || application.email === session.email)
+        .map((application) => ({
+            ...application,
+            collegeName: findCollegeById(application.collegeId)?.name ?? "Unknown college",
+        }))
+        .sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
+
+    return NextResponse.json({ data: applications });
+}
+
 export async function POST(request: Request) {
     const body = await request.json().catch(() => null);
     const parsed = applicationCreateSchema.safeParse(body);
