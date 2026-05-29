@@ -44,7 +44,7 @@ export default function CollegesPage() {
         <>
             <Navbar />
             <main className="grid min-h-screen bg-[#f8f9ff] lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr]">
-                <motion.aside initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.35 }} className="hidden lg:block border-r border-slate-200 bg-[#eff4ff] p-4 sm:p-6 overflow-y-auto">
+                <motion.aside initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.35 }} className="lg:block border-r border-slate-200 bg-[#eff4ff] p-4 sm:p-6 overflow-y-auto">
                     <h1 className="flex items-center gap-2 sm:gap-3 text-lg sm:text-xl font-bold text-[#3525cd]">
                         <SlidersHorizontal className="h-4 w-4 sm:h-5 sm:w-5" /> Filters
                     </h1>
@@ -90,7 +90,7 @@ export default function CollegesPage() {
                                 {loading ? "Loading verified college records..." : `Showing ${colleges.length} backend results`}
                             </p>
                         </div>
-                        
+
                         <button className="hidden lg:flex items-center gap-2 rounded-xl bg-[#eff4ff] px-4 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm font-semibold">
                             Sort by: {sort} <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5" />
                         </button>
