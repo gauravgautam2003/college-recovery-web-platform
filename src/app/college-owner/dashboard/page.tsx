@@ -128,15 +128,15 @@ export default function CollegeOwnerDashboard() {
             <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
                 <div className="container mx-auto px-4">
                     {/* Header */}
-                    <div className="flex justify-between items-center mb-8">
+                    <div className="flex justify-between flex-col gap-4 mb-8">
                         <div>
-                            <h1 className="text-4xl font-bold text-slate-900">Dashboard</h1>
+                            <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
                             <p className="text-slate-600">Welcome, {ownerName}</p>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-4">
                             <button
                                 onClick={handleSystemStatus}
-                                className="bg-white text-slate-800 border border-slate-300 px-6 py-2 rounded-lg font-semibold hover:bg-slate-50 transition-colors flex items-center gap-2"
+                                className="bg-white text-slate-800 md:w-full lg:max-w-40 border border-slate-300 px-6 py-2 rounded-lg font-semibold hover:bg-slate-50 transition-colors flex items-center gap-2"
                             >
                                 <Activity className="h-5 w-5" />
                                 System

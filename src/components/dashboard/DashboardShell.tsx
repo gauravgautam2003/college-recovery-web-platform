@@ -30,7 +30,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
           aria-label="Open dashboard menu"
           title="Open dashboard menu"
           onClick={() => setSidebarOpen(true)}
-          className="fixed left-4 top-20 z-40 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-[#3525cd] shadow-lg shadow-slate-900/10 transition hover:bg-[#eff4ff] lg:hidden"
+          className="fixed right-4 top-20 z-40 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-[#3525cd] shadow-lg shadow-slate-900/10 transition hover:bg-[#eff4ff] lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -40,7 +40,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
             type="button"
             aria-label="Close dashboard menu"
             className="fixed inset-0 z-40 bg-slate-950/35 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
+            onClick={() => setSidebarOpen(false)} 
           />
         )}
 
@@ -78,7 +78,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                     onClick={() => setSidebarOpen(false)}
                     className={cn(
                       "flex h-12 items-center gap-4 rounded-lg px-5 transition hover:bg-white hover:text-[#3525cd]",
-                      active ? "bg-[#4f46e5] text-white shadow-lg shadow-indigo-500/20 hover:bg-[#4f46e5] hover:text-white" : "text-slate-800",
+                      active ? "bg-[#4f46e5] text-white shadow-lg shadow-indigo-500/20 hover:bg-[#4f46e5] hover:text-[#3525cd]" : "text-slate-800",
                     )}
                   >
                     <Icon className="h-4 w-4" />

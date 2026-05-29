@@ -17,7 +17,7 @@ export default function HowToApplyPage() {
             <Navbar />
             <main className="min-h-screen bg-[#f8f9ff] px-6 py-12">
                 <section className="mx-auto max-w-5xl">
-                    <h1 className="text-4xl font-bold text-slate-950">How Students Apply</h1>
+                    <h1 className="text-2xl font-bold text-slate-950">How Students Apply</h1>
                     <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
                         EduVision connects discovery, comparison, application inquiry, and college-owner follow-up in one flow.
                     </p>
@@ -32,11 +32,11 @@ export default function HowToApplyPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="mt-10 flex flex-wrap gap-4">
-                        <Link href="/colleges" className="flex items-center gap-2 rounded-lg bg-[#3525cd] px-6 py-3 font-bold text-white">
+                    <div className="mt-10 flex flex-wrap gap-3">
+                        <Link href="/colleges" className="flex w-full lg:max-w-60 items-center gap-2 rounded-lg bg-[#3525cd] px-6 py-3 font-bold text-white">
                             Browse Colleges <ArrowRight className="h-4 w-4" />
                         </Link>
-                        <Link href="/college-owner" className="rounded-lg border border-[#3525cd] px-6 py-3 font-bold text-[#3525cd]">
+                        <Link href="/college-owner" className="rounded-lg border w-full lg:max-w-60 border-[#3525cd] px-6 py-3 font-bold text-[#3525cd]">
                             College Admin Panel
                         </Link>
                     </div>

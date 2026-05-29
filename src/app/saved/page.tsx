@@ -53,7 +53,7 @@ export default function SavedPage() {
         <section className="px-8 py-10">
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="flex flex-wrap items-center justify-between gap-6">
             <div>
-              <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#0b1c30] xl:text-5xl">
+              <h1 className="text-2xl font-bold leading-tight tracking-normal text-[#0b1c30] xl:text-5xl">
                 Your Saved Colleges
               </h1>
               <p className="mt-2 text-sm text-slate-600">Loaded from `/api/saved`.</p>
